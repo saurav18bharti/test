@@ -1,0 +1,518 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* NAVBAR STYLES  */
+
+:root {
+  --navbarHeight: 60px;
+  --bothNavHeight: 102px;
+  --secondaryNavbarHeight: 42px;
+
+  --clr-primary: hsl(237, 85%, 63%);
+  --clr-primary-dark: hsl(237, 85%, 57%);
+  // MAIN
+  --background: 0 0% 100%;
+  --foreground: 224 71.4% 4.1%;
+  --card: 0 0% 100%;
+  --card-foreground: 224 71.4% 4.1%;
+  --content1: 0 0% 100%;
+  --content2: 0 0% 98%;
+  --content3: 0 0% 96%;
+  --popover: 0 0% 100%;
+  --popover-foreground: 224 71.4% 4.1%;
+  --primary: 219 98% 57%;
+  --primary-dark: 219 97% 51%;
+  --primary-foreground: 219 98% 57%;
+  --secondary: 220 14.3% 95.9%;
+  --secondary-foreground: 220.9 39.3% 11%;
+  --muted: 220 14.3% 95.9%;
+  --muted-foreground: 220 8.9% 46.1%;
+  --accent: 220 14.3% 95.9%;
+  --accent-foreground: 220.9 39.3% 11%;
+  --destructive: 0 84.2% 60.2%;
+  --destructive-foreground: 210 20% 98%;
+  --border: 220 13% 91%;
+  --input: 220 13% 91%;
+  --ring: 262.1 83.3% 57.8%;
+  --radius: 0.5rem;
+  --accent: 220 14.3% 95.9%;
+  --accent-foreground: 220.9 39.3% 11%;
+
+  @media screen and (max-width: 768px) {
+    --navbarHeight: 62px;
+    --bothNavHeight: 112px;
+    --secondaryNavbarHeight: 50px;
+  }
+}
+
+html[data-theme="dark"] {
+  --background: 240 10% 3.9%;
+  --foreground: 210 20% 98%;
+  --content1: 240 10% 8%;
+  --content2: 240 10% 12%;
+  --content3: 240 10% 16%;
+  --card: 224 71.4% 4.1%;
+  --card-foreground: 210 20% 98%;
+  --popover: 224 71.4% 4.1%;
+  --popover-foreground: 210 20% 98%;
+  --primary: 219 98% 57%;
+  --primary-dark: 219 97% 51%;
+  --primary-foreground: 219 98% 57%;
+  --secondary: 215 27.9% 16.9%;
+  --secondary-foreground: 210 20% 98%;
+  --muted: 215 27.9% 16.9%;
+  --muted-foreground: 217.9 10.6% 64.9%;
+  --accent: 215 27.9% 16.9%;
+  --accent-foreground: 210 20% 98%;
+  --destructive: 0 62.8% 30.6%;
+  --destructive-foreground: 210 20% 98%;
+  --border: 215 27.9% 16.9%;
+  --input: 215 27.9% 16.9%;
+  --ring: 263.4 70% 50.4%;
+  --accent: 220 14.3% 95.9%;
+  --accent-foreground: 220.9 39.3% 11%;
+}
+
+body,
+* {
+  // font-weight: 500;
+  scroll-margin-top: 80px;
+  scroll-behavior: smooth;
+}
+// * {
+//   @apply border-border;
+// }
+
+.mainContent {
+  transition: all 0.4s;
+
+  &.main-offset {
+    transform: translateX(calc(100vw - var(--navbarHeight)));
+    transition: all 0.4s;
+
+    & + .bgDrop {
+      display: block;
+    }
+  }
+
+  & + .bgDrop {
+    display: none;
+    backdrop-filter: blur(3px);
+  }
+}
+
+button {
+  font-family: var(--font-publicSans);
+}
+
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+}
+
+.text-gradient {
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  -moz-background-clip: text;
+  -moz-text-fill-color: transparent;
+}
+
+b {
+  font-weight: 600;
+}
+
+:root {
+  --primary-gradient: linear-gradient(180deg, #4e55f1 0%, #9d3cff 100%);
+}
+
+.bg-gradient {
+  background: linear-gradient(180deg, #4e55f1 0%, #9d3cff 100%);
+}
+
+input[type="number"] {
+  -webkit-appearance: textfield;
+  -moz-appearance: textfield;
+  appearance: textfield;
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.curveUnderline:after {
+  // content: "";
+  // position: absolute;
+  // bottom: -10px;
+  // left: 0;
+  // height: 7px;
+  // width: 100%;
+  // border: solid 3px #f84646;
+  // border-color: #f84646 transparent transparent transparent;
+  // border-radius: 50%;
+
+  content: "";
+  position: absolute;
+  height: 15px;
+  width: 100%;
+  left: 5px;
+  bottom: -14px;
+  border-top: 2px solid red;
+  border-radius: 50%;
+}
+
+.common_width {
+  max-width: 85vw;
+  margin-inline: auto;
+}
+
+.hideScrollbar {
+  ::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+body.hideChatbot #yourgpt_root {
+  display: none;
+}
+
+// NAV BAR
+// .rootNav {
+//   @apply transition-all duration-300 bg-white font-body flex xl:px-0 px-3;
+//   backdrop-filter: blur(3px);
+
+//   &.primary {
+//     @apply h-navbar sticky top-0 z-[22] hidden md:flex w-full;
+
+//     &.transparent {
+//       @apply bg-transparent text-white transition-all duration-300 fixed;
+//     }
+
+//     &.scrolledLight {
+//       @apply bg-white fixed w-full text-black;
+//     }
+
+//     &.scrolled {
+//       box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.08);
+
+//       &:has(~ .secondary) {
+//         box-shadow: none;
+//       }
+//     }
+//   }
+
+//   &.secondary {
+//     @apply sticky top-0 z-[20];
+
+//     &.scrolled {
+//       box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.08);
+//     }
+//     &.transparent {
+//       @apply bg-transparent transition-all duration-300 fixed top-0 w-full;
+//     }
+
+//     &.scrolledLight {
+//       @apply bg-white fixed w-full text-black;
+//     }
+
+//     &.dark {
+//       @apply fixed w-full;
+//     }
+//   }
+
+//   .inner {
+//     @apply flex justify-between md:justify-between gap-2 max-w-screen-xl mx-auto flex-1 items-center;
+//   }
+//   // .inner {
+//   //   @apply flex justify-between md:justify-between gap-2  flex-1 items-center ;
+//   // }
+
+//   .links {
+//     @apply flex gap-10;
+//   }
+
+//   .btns {
+//     @apply flex gap-2;
+
+//     .btn {
+//       @apply p-2 px-4 rounded-lg transition-all;
+//     }
+
+//     .login {
+//       @apply bg-black/10 text-black/60 hover:text-black;
+//     }
+
+//     .signup {
+//       @apply bg-primary text-white hover:bg-primaryDark;
+//     }
+//   }
+
+//   .navLink {
+//     @apply text-base flex items-center gap-2 transition-all text-black/60 hover:text-black [&.active]:text-black;
+//   }
+
+//   &.primary {
+//     .navLink {
+//       @apply relative before:absolute before:-inset-x-4 before:-inset-y-2 before:rounded-lg before:bg-current before:transition-all before:opacity-0 before:scale-90 hover:before:opacity-10 hover:before:scale-90 [&.active]:before:opacity-10 [&.active]:before:scale-90;
+//     }
+//   }
+
+//   &.secondary {
+//     .navLink {
+//       @apply md:text-base text-sm py-4;
+//     }
+
+//     .dropDownLabel {
+//       @apply flex gap-2 items-center cursor-pointer py-4 text-black/60 [&.active]:text-black/80 hover:text-black/80;
+//     }
+
+//     .dropDownContainer {
+//       @apply absolute bg-white border-t overflow-auto border-zinc-500/20 w-full top-full shadow-[0px_2px_6px_rgba(0,0,0,0.04)] left-0;
+
+//       .dropDownitem {
+//         @apply basis-1/2 flex gap-3 md:gap-5 items-start p-3 lg:p-4 cursor-pointer rounded-xl duration-200;
+//       }
+
+//       .avatarItem {
+//         @apply bg-zinc-100/60 border border-zinc-200 hover:bg-zinc-100 hover:border-zinc-300 flex gap-2 items-start pr-3 pt-3 lg:pt-4 lg:pr-4 overflow-hidden cursor-pointer rounded-xl transition-all;
+//       }
+//       .gptChip {
+//         @apply flex mt-4 gap-2 items-center px-4 py-2 rounded-full border border-primary/20 w-fit text-sm text-primary font-medium;
+//       }
+//     }
+//   }
+
+//   &.secondary {
+//     .left {
+//       @apply p-0;
+//     }
+
+//     .links {
+//       @apply gap-0 min-[900px]:flex hidden;
+//       & > * {
+//         @apply px-2 lg:px-4;
+//       }
+//     }
+
+//     .actions {
+//       @apply flex gap-2 items-center;
+//     }
+//   }
+
+//   // GALAXY NAVBAR
+
+//   &.galaxy,
+//   &.transparent {
+//     @apply bg-black/5 text-white/100;
+
+//     .navLink {
+//       @apply text-white/60 hover:text-white [&.active]:text-white;
+//     }
+
+//     &.scrolled {
+//       .navLink {
+//         @apply text-white/80 hover:text-white [&.active]:text-white;
+//       }
+//     }
+
+//     .btns {
+//       .login {
+//         @apply bg-white/10 text-white/60 hover:text-white;
+//       }
+//       .signup {
+//         // @apply bg-galaxyPrimary hover:bg-galaxyPrimaryDark;
+
+//         @apply shadow-[0px_4px_4px_0px_#9686F5_inset] bg-gradient-to-b from-[#755fff] to-[#4731ce] rounded-md hover:shadow-[0px_4px_4px_0px_#9686F5_inset,0px_3px_12px_rgba(150,134,245,1)] transition-all hover:scale-[1.01];
+//       }
+//     }
+
+//     &.scrolled {
+//       @apply bg-galaxyBg bg-opacity-50 backdrop-blur-sm text-white/90;
+//       // .login {
+//       //   // @apply bg-white/10 text-white/60  hover:text-white;
+//       // }
+//     }
+
+//     &.scrolled.dark {
+//       @apply bg-black/50;
+//     }
+
+//     &.secondary {
+//       .dropDownLabel {
+//         @apply text-white/60 [&.active]:text-white hover:text-white;
+//       }
+
+//       .dropDownContainer {
+//         @apply bg-black bg-opacity-90 backdrop-filter backdrop-blur-sm;
+
+//         .dropDownitem {
+//           @apply hover:bg-white/10;
+//         }
+//         .avatarItem {
+//           @apply bg-white/10 hover:bg-white/20 border border-white/30;
+//         }
+//         .gptChip {
+//           @apply border-primary text-primary bg-primary/20;
+//         }
+//       }
+//     }
+//   }
+// }
+
+//SIDE MENU
+// .sideMenu {
+//   @apply h-navbar bg-white text-black/90 md:hidden flex z-[22] top-0 sticky items-center justify-between px-3;
+
+//   .ham {
+//     @apply h-12 w-12 flex items-center justify-center rounded-full bg-black/5;
+//   }
+
+//   &.scrolled {
+//     box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.08);
+
+//     &:has(~ .secondary) {
+//       box-shadow: none;
+//     }
+//   }
+
+//   &.galaxy {
+//     @apply bg-black/5 text-white/80;
+
+//     &.scrolled {
+//       @apply bg-galaxyBg text-white/90 bg-opacity-50 backdrop-blur-sm;
+//     }
+
+//     &.scrolled.dark {
+//       @apply bg-black/30;
+//     }
+//   }
+// }
+
+// .sideMenuContent {
+//   .links {
+//     a {
+//       @apply font-body font-medium py-2;
+//     }
+//   }
+
+//   .btn {
+//     @apply rounded-2xl p-3 px-4 text-sm flex items-center justify-center font-medium;
+
+//     &.login {
+//       @apply text-primary bg-primary/10;
+//     }
+
+//     &.signup {
+//       @apply text-white bg-primary hover:bg-primaryDark;
+//     }
+//   }
+// }
+
+@keyframes gradientChange {
+  0% {
+    background-position: 0% 0%;
+  }
+
+  20% {
+    background-position: 50% 0%;
+  }
+
+  40% {
+    background-position: 100% 0%;
+  }
+
+  60% {
+    background-position: 100% 50%;
+  }
+
+  80% {
+    background-position: 50% 100%;
+  }
+
+  100% {
+    background-position: 0% 100%;
+  }
+}
+
+.dot-mask {
+  position: absolute;
+  inset: 0;
+  height: 100%;
+  width: 100%;
+  background-image: radial-gradient(#f9f7ff 1px, rgb(235, 240, 255) 1px);
+  background-size: 16px 16px;
+  -webkit-mask-image: radial-gradient(ellipse 50% 50% at 50% 50%, #000 60%, transparent 100%);
+  mask-image: radial-gradient(ellipse 50% 50% at 50% 50%, #000 60%, transparent 100%);
+}
+
+.wp-video {
+  width: 100% !important;
+}
+
+.tooltip {
+  & {
+    @apply bg-white;
+    background-color: pink;
+    box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.08);
+  }
+
+  &.dark {
+    background: red;
+  }
+}
+
+body.figmaCursor {
+  cursor: url("/images/figma-cursor.png"), auto;
+
+  button,
+  a {
+    &:hover {
+      cursor: url("/images/big-hand-cursor.png"), auto;
+    }
+  }
+}
+
+// BLUR FIX
+.dotlottie-container {
+  svg {
+    transform: unset !important;
+  }
+}
+
+.shineAnim {
+  background: #eee;
+  background: linear-gradient(110deg, #ececec 8%, #f5f5f5 18%, #ececec 33%);
+  border-radius: 5px;
+  background-size: 200% 100%;
+  animation: 1.5s shine linear infinite;
+}
+
+@keyframes shine {
+  to {
+    background-position-x: -200%;
+  }
+}
+
+.grecaptcha-badge {
+  visibility: hidden !important;
+}
+
+// AFFILIATE CSS
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+.animate-scroll {
+  animation: scroll 24s linear infinite alternate;
+}
